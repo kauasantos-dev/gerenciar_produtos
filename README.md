@@ -161,7 +161,7 @@ Este programa está licenciado sob a licença MIT. Consulte o arquivo `LICENSE` 
 
 Estudante de **Análise e Desenvolvimento de Sistemas (ADS) - IFRN**
 
-**Contato:**
+**🌐 Contato:**
 
-- GitHub: [kauasantos-dev](https://github.com/kauasantos-dev)
-- E-mail: [kavillykaua@gmail.com](kavillykaua@gmail.com)
+📧 [kavillykaua@gmail.com](mailto:kavillykaua@gmail.com)  
+🌐 [GitHub | kauasantos-dev](https://github.com/kauasantos-dev)  
