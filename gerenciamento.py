@@ -109,29 +109,6 @@ class Produtos:
               self.arquivo_w(self.__lista)
         except FileNotFoundError:
             print("Erro: Não há produtos cadastrados.\n")
-
-    def validar_nome(self, nome):
-            if not nome.replace(" ", "").isalnum(): #letras e números
-                raise ValueError("O nome do produto não deve conter caracteres especiais.")
-            return nome.strip()
-    
-    def validar_preco(self, preco):
-        try:
-            preco = float(preco)
-        except ValueError:
-            raise ValueError("O preço do produto deve conter apenas números.")
-        if preco <= 0:
-            raise ValueError("O preço do produto não pode ser menor ou igual a 0 (zero).")
-        return preco
-    
-    def validar_estoque(self, estoque):
-        try:
-            estoque = int(estoque)
-        except ValueError:
-            raise ValueError("O estoque deve conter apenas números.")
-        if estoque < 0:
-            raise ValueError("O estoque não pode ser menor que 0 (zero).")
-        return estoque
     
     def arquivo_r(self):
         with open(config_arquivos.save_to, "r", encoding="utf-8") as file:
