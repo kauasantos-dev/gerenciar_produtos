@@ -1,9 +1,7 @@
 import sys
 import json
-import os
 
-base_dir = os.path.dirname(__file__)
-save_to = os.path.join(base_dir, 'lista_produtos.json')
+import config_arquivos
 
 class Produtos:
     def __init__(self):
@@ -15,7 +13,7 @@ class Produtos:
         estoque = self.validar_estoque(estoque)
         self.produto = {'Produto': nome, 'Preço': round(preco, 2), 'Estoque': estoque} 
         try:
-            with open(save_to, "x", encoding="utf-8") as file:
+            with open(config_arquivos.save_to, "x", encoding="utf-8") as file:
                 self.__lista.append(self.produto)
                 json.dump(self.__lista, file, indent=2, ensure_ascii=False)
         except FileExistsError:          
@@ -139,11 +137,11 @@ class Produtos:
         return estoque
     
     def arquivo_r(self):
-        with open(save_to, "r", encoding="utf-8") as file:
+        with open(config_arquivos.save_to, "r", encoding="utf-8") as file:
             return json.load(file)
     
     def arquivo_w(self, lista):
-        with open(save_to, "w", encoding="utf-8") as file:
+        with open(config_arquivos.save_to, "w", encoding="utf-8") as file:
             json.dump(lista, file, indent=2, ensure_ascii=False)
 
 produtos = Produtos()
