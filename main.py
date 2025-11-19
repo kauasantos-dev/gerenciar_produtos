@@ -1,9 +1,9 @@
 import sys
 
 import caminho_arquivos
-import gerenciamento
+import gerenciar_loja
 
-produtos = gerenciamento.Loja()
+produtos = gerenciar_loja.Loja()
 print("===== GERENCIAMENTO DE PRODUTOS =====\n")
 while True:
     print("\nSelecione uma opção abaixo (digite o número da opção):\n")
