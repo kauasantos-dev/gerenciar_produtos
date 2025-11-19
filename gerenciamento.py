@@ -1,4 +1,4 @@
-import config_arquivos
+import caminho_arquivos
 import json
 
 class Loja:
@@ -11,7 +11,7 @@ class Loja:
         estoque = self.validar_estoque(estoque)
         self.produto = {'Produto': nome, 'Preço': round(preco, 2), 'Estoque': estoque} 
         try:
-            with open(config_arquivos.save_to, "x", encoding="utf-8") as file:
+            with open(caminho_arquivos.save_to, "x", encoding="utf-8") as file:
                 self.__lista.append(self.produto)
                 json.dump(self.__lista, file, indent=2, ensure_ascii=False)
         except FileExistsError:          
@@ -112,9 +112,9 @@ class Loja:
             print("Erro: Não há produtos cadastrados.\n")
     
     def arquivo_r(self):
-        with open(config_arquivos.save_to, "r", encoding="utf-8") as file:
+        with open(caminho_arquivos.save_to, "r", encoding="utf-8") as file:
             return json.load(file)
     
     def arquivo_w(self, lista):
-        with open(config_arquivos.save_to, "w", encoding="utf-8") as file:
+        with open(caminho_arquivos.save_to, "w", encoding="utf-8") as file:
             json.dump(lista, file, indent=2, ensure_ascii=False)

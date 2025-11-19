@@ -1,6 +1,6 @@
 import sys
 
-import config_arquivos
+import caminho_arquivos
 import gerenciamento
 
 produtos = gerenciamento.Loja()
