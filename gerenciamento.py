@@ -1,7 +1,7 @@
 import config_arquivos
 import json
 
-class Produtos:
+class Loja:
     def __init__(self):
         self.__lista = []
 
