@@ -1,4 +1,5 @@
 import config_arquivos
+import json
 
 class Produtos:
     def __init__(self):
