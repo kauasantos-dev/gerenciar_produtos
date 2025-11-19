@@ -110,11 +110,3 @@ class Loja:
               self.arquivo_w(self.__lista)
         except FileNotFoundError:
             print("Erro: Não há produtos cadastrados.\n")
-    
-    def arquivo_r(self):
-        with open(caminho_arquivos.save_to, "r", encoding="utf-8") as file:
-            return json.load(file)
-    
-    def arquivo_w(self, lista):
-        with open(caminho_arquivos.save_to, "w", encoding="utf-8") as file:
-            json.dump(lista, file, indent=2, ensure_ascii=False)
