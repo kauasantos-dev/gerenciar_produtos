@@ -1,7 +1,9 @@
 import sys
-import config_arquivos
 
-produtos = Produtos()
+import config_arquivos
+import gerenciamento
+
+produtos = gerenciamento.Produtos()
 print("===== GERENCIAMENTO DE PRODUTOS =====\n")
 while True:
     print("\nSelecione uma opção abaixo (digite o número da opção):\n")
