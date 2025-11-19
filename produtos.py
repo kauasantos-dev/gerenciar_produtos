@@ -1,6 +1,4 @@
 import sys
-import json
-
 import config_arquivos
 
 produtos = Produtos()
