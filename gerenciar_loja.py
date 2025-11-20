@@ -16,12 +16,23 @@ class Loja:
         return self.__produtos
     
     @produtos.setter
-    def produtos(self, novo_produto):
-        if not isinstance(novo_produto, dict):
-            raise ValueError("Produto inválido.")
-        else:
+    def produtos(self, novo_produto, opcao_selecionada):
+        if opcao_selecionada == '4' and isinstance(novo_produto, str):
+            if not ValidarProduto.verificar_existencia_produto(novo_produto):
+                raise ValueError("Produto não disponível na loja.")
+            produto_encontrado = None
+            for produto_salvo in self.__produtos:
+                if produto_salvo['Nome'].lower() == novo_produto.lower():
+                    produto_encontrado = produto_salvo
+                    break
+            self.__produtos.remove(produto_encontrado)
+            gerenciar_arquivos.AbrirArquivos.arquivo_w(self.__produtos)
+            self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
+
+        elif isinstance(novo_produto, dict):
             self.__produtos.append(novo_produto)
             gerenciar_arquivos.AbrirArquivos.arquivo_w(self.produtos)
+            self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
 
     def adicionar(self, nome, preco, estoque):
         nome = self.validar_nome(nome)
