@@ -4,8 +4,11 @@ import json
 class AbrirArquivos:
     @staticmethod
     def arquivo_r():
-        with open(caminho_arquivos.save_to, "r", encoding="utf-8") as file:
-            return json.load(file)
+        try:
+            with open(caminho_arquivos.save_to, "r", encoding="utf-8") as file:
+                return json.load(file)
+        except FileNotFoundError:
+            raise ValueError("Não há produtos cadastrados na loja.")
         
     @staticmethod
     def arquivo_w(produtos):
