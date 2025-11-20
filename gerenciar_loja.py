@@ -3,7 +3,7 @@ import json
 
 class Loja:
     def __init__(self):
-        self.__lista = []
+        self.__produtos = []
 
     def adicionar(self, nome, preco, estoque):
         nome = self.validar_nome(nome)
