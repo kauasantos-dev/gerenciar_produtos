@@ -5,6 +5,10 @@ import json
 class Loja:
     def __init__(self):
         self.__produtos = []
+    
+    @property
+    def produtos(self):
+        return self.__produtos
 
     def adicionar(self, nome, preco, estoque):
         nome = self.validar_nome(nome)
