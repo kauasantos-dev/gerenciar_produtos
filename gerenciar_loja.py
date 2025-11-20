@@ -12,7 +12,7 @@ class Loja:
 
     def adicionar(self, nome, preco, estoque):
         nome = self.validar_nome(nome)
-        if not ValidarProduto.verificar_existencia_produto(nome):
+        if ValidarProduto.verificar_existencia_produto(nome, self.produtos):
             return False
         preco = self.validar_preco(preco)
         estoque = self.validar_estoque(estoque)
