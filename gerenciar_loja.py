@@ -32,7 +32,7 @@ class Loja:
             for produto in self.__produtos:
                 uteis.exibir_produto(produto)
         else:
-            print("NÃO HÁ PRODUTOS NA LOJA.\n")
+            return False
 
     def buscar(self, nome):
         if not ValidarProduto.verificar_existencia_produto(nome, self.__produtos):
