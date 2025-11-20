@@ -1,6 +1,9 @@
-import caminho_arquivos
-from validadores import ValidarProduto
 import json
+
+import caminho_arquivos
+import gerenciar_arquivos
+from validadores import ValidarProduto
+
 
 class Loja:
     def __init__(self):
@@ -17,13 +20,14 @@ class Loja:
         else:
             self.__produtos.append(novo_produto)
 
+
     def adicionar(self, nome, preco, estoque):
         nome = self.validar_nome(nome)
         if ValidarProduto.verificar_existencia_produto(nome, self.produtos):
             return False
         preco = self.validar_preco(preco)
         estoque = self.validar_estoque(estoque)
-        self.produto = {'Produto': nome, 'Preço': round(preco, 2), 'Estoque': estoque} 
+        novo_produto = {'Produto': nome, 'Preço': round(preco, 2), 'Estoque': estoque} 
         try:
             with open(caminho_arquivos.save_to, "x", encoding="utf-8") as file:
                 self.__lista.append(self.produto)
