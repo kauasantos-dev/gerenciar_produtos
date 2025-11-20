@@ -6,19 +6,13 @@ from validadores import ValidarProduto
 
 class Loja:
     def __init__(self):
-        self.produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
+        conteudo_arquivo = gerenciar_arquivos.AbrirArquivos.arquivo_r()
+        self.__produtos = conteudo_arquivo if conteudo_arquivo else []
     
     @property
     def produtos(self):
         return self.__produtos
     
-    @produtos.setter
-    def produtos(self, conteudo_arquivo):
-        if conteudo_arquivo:
-            self.__produtos = conteudo_arquivo
-        else:
-            self.__produtos = []
-
     def adicionar(self, nome, preco, estoque):
         nome = ValidarProduto.validar_nome(nome)
         if ValidarProduto.verificar_existencia_produto(nome, self.produtos):
