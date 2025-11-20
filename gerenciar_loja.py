@@ -26,23 +26,18 @@ class Loja:
         return True
     
     def listar_produtos(self):
-        try:
-            self.__lista = self.arquivo_r()
-            if not self.__lista:
-                print("Erro: Não há produtos cadastrados.\n")
-                return
-            else:
-                  print("\nProdutos cadastrados:\n")
-                  for produto in self.__lista:
-                      for chave, valor in produto.items():
-                          if chave.lower() == 'produto':
-                              print(f"{chave}: {valor} |", end=" ")
-                          elif chave.lower() == 'preço':
-                              print(f"{chave}: R${valor:.2f} |", end=" ")
-                          elif chave.lower() == 'estoque':
-                              print(f"{chave}: {valor}")
-        except FileNotFoundError:
-            print("Erro: Não há produtos cadastrados.\n")
+        if self.__produtos:
+            print("PRODUTOS DA LOJA:\n")
+            for produto in self.__produtos:
+                for chave, valor in produto.items():
+                    if chave.lower() == 'produto':
+                        print(f"{chave}: {valor} |", end=" ")
+                    elif chave.lower() == 'preço':
+                        print(f"{chave}: R${valor:.2f} |", end=" ")
+                    elif chave.lower() == 'estoque':
+                        print(f"{chave}: {valor}\n")
+        else:
+            print("NÃO HÁ PRODUTOS NA LOJA.\n")
 
     def buscar(self, nome):
         nome = self.validar_nome(nome)
