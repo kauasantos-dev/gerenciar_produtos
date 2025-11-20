@@ -24,3 +24,10 @@ class ValidarProduto:
         if estoque < 0:
             raise ValueError("O estoque não pode ser menor que 0 (zero).")
         return estoque
+    
+    @staticmethod
+    def verificar_existencia_produto(nome_produto, lista_produtos):
+        for produto in lista_produtos:
+            if produto['Nome'].lower() == nome_produto.lower():
+                return True
+        return False
