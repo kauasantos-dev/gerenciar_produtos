@@ -9,6 +9,13 @@ class Loja:
     @property
     def produtos(self):
         return self.__produtos
+    
+    @produtos.setter
+    def produtos(self, novo_produto):
+        if not isinstance(novo_produto, dict):
+            raise ValueError("Produto inválido.")
+        else:
+            self.__produtos.append(novo_produto)
 
     def adicionar(self, nome, preco, estoque):
         nome = self.validar_nome(nome)
