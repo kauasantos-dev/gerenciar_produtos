@@ -37,6 +37,7 @@ class Loja:
     def buscar(self, nome):
         if not ValidarProduto.verificar_existencia_produto(nome, self.__produtos):
             return False
+        print("PRODUTOS ENCONTRADOS:\n")
         for produto in self.__produtos:
             if nome.lower() in produto['Nome'].lower():
                 uteis.exibir_produto(produto)
