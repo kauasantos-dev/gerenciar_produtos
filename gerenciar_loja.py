@@ -16,22 +16,10 @@ class Loja:
         return self.__produtos
     
     @produtos.setter
-    def produtos(self, novo_produto, opcao_selecionada):
-        if opcao_selecionada == '4' and isinstance(novo_produto, str):
-            if not ValidarProduto.verificar_existencia_produto(novo_produto):
-                raise ValueError("Produto não disponível na loja.")
-            produto_encontrado = None
-            for produto_salvo in self.__produtos:
-                if produto_salvo['Nome'].lower() == novo_produto.lower():
-                    produto_encontrado = produto_salvo
-                    break
-            self.__produtos.remove(produto_encontrado)
-            gerenciar_arquivos.AbrirArquivos.arquivo_w(self.__produtos)
-            self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
-
-        elif isinstance(novo_produto, dict):
+    def produtos(self, novo_produto):
+        if isinstance(novo_produto, dict):
             self.__produtos.append(novo_produto)
-            gerenciar_arquivos.AbrirArquivos.arquivo_w(self.produtos)
+            gerenciar_arquivos.AbrirArquivos.arquivo_w(self.__produtos)
             self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
 
     def adicionar(self, nome, preco, estoque):
@@ -40,16 +28,10 @@ class Loja:
             return False
         preco = self.validar_preco(preco)
         estoque = self.validar_estoque(estoque)
-        novo_produto = {'Produto': nome, 'Preço': round(preco, 2), 'Estoque': estoque} 
-        try:
-            with open(caminho_arquivos.save_to, "x", encoding="utf-8") as file:
-                self.__lista.append(self.produto)
-                json.dump(self.__lista, file, indent=2, ensure_ascii=False)
-        except FileExistsError:          
-            self.__lista = self.arquivo_r()
-            self.__lista.append(self.produto)
-            self.arquivo_w(self.__lista)
-        print("\nProduto adicionado com sucesso!\n")
+        novo_produto = {'Produto': nome, 'Preço': round(preco, 2), 'Estoque': estoque}
+        self.__produtos.append(novo_produto)
+        gerenciar_arquivos.AbrirArquivos.arquivo_w(novo_produto)
+        self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
     
     def listar_produtos(self):
         try:
