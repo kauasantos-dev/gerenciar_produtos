@@ -1,4 +1,5 @@
 import caminho_arquivos
+from validadores import ValidarProduto
 import json
 
 class Loja:
@@ -7,6 +8,8 @@ class Loja:
 
     def adicionar(self, nome, preco, estoque):
         nome = self.validar_nome(nome)
+        if not ValidarProduto.verificar_existencia_produto(nome):
+            return False
         preco = self.validar_preco(preco)
         estoque = self.validar_estoque(estoque)
         self.produto = {'Produto': nome, 'Preço': round(preco, 2), 'Estoque': estoque} 
