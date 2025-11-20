@@ -8,7 +8,7 @@ class AbrirArquivos:
             with open(caminho_arquivos.save_to, "r", encoding="utf-8") as file:
                 return json.load(file)
         except FileNotFoundError:
-            raise ValueError("Não há produtos cadastrados na loja.")
+            return False
         
     @staticmethod
     def arquivo_w(produtos):
