@@ -40,29 +40,17 @@ class Loja:
             print("NÃO HÁ PRODUTOS NA LOJA.\n")
 
     def buscar(self, nome):
-        nome = self.validar_nome(nome)
-        try:
-            self.__lista = self.arquivo_r()
-            verificar = False
-            for i in range(len(self.__lista)):
-                if nome.lower() == self.__lista[i]['Produto'].lower():
-                    verificar = True
-                    produto = self.__lista[i]
-            if verificar:
-               print("Produto encontrado:\n")
-               for chave, valor in produto.items():
-                  if chave.lower() == 'produto':
-                     print(f"{chave}: {valor} |", end=" ")
-                  elif chave.lower() == 'preço':
-                     print(f"{chave}: R${valor:.2f} |", end=" ")
-                  elif chave.lower() == 'estoque':
-                     print(f"{chave}: {valor}")
-                     return
-            else:
-                print("\nNenhum produto encontrado.\n")
-                return
-        except FileNotFoundError:
-            print("Erro: Não há produtos cadastrados.\n")
+        if not ValidarProduto.verificar_existencia_produto(nome, self.__produtos):
+            return False
+        for produto in self.__produtos:
+            if nome.lower() in produto['Nome'].lower():
+                for chave, valor in produto.items():
+                    if chave.lower() == 'produto':
+                        print(f"{chave}: {valor} |", end=" ")
+                    elif chave.lower() == 'preço':
+                        print(f"{chave}: R${valor:.2f} |", end=" ")
+                    elif chave.lower() == 'estoque':
+                        print(f"{chave}: {valor}\n")
 
     def excluir(self, nome):
         nome = self.validar_nome(nome)
