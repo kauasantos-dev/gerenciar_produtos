@@ -1,13 +1,15 @@
 import json
 
 import caminho_arquivos
-import gerenciar_arquivos
+import gerenciar_arquivos 
 from validadores import ValidarProduto
-
 
 class Loja:
     def __init__(self):
-        self.__produtos = []
+        if gerenciar_arquivos.AbrirArquivos.arquivo_r():
+            self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
+        else:
+            self.__produtos = []
     
     @property
     def produtos(self):
@@ -19,7 +21,7 @@ class Loja:
             raise ValueError("Produto inválido.")
         else:
             self.__produtos.append(novo_produto)
-
+            gerenciar_arquivos.AbrirArquivos.arquivo_w(self.produtos)
 
     def adicionar(self, nome, preco, estoque):
         nome = self.validar_nome(nome)
