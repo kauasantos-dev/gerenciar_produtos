@@ -1,5 +1,6 @@
 import json
 
+import uteis
 import caminho_arquivos
 import gerenciar_arquivos 
 from validadores import ValidarProduto
@@ -29,13 +30,7 @@ class Loja:
         if self.__produtos:
             print("PRODUTOS DA LOJA:\n")
             for produto in self.__produtos:
-                for chave, valor in produto.items():
-                    if chave.lower() == 'produto':
-                        print(f"{chave}: {valor} |", end=" ")
-                    elif chave.lower() == 'preço':
-                        print(f"{chave}: R${valor:.2f} |", end=" ")
-                    elif chave.lower() == 'estoque':
-                        print(f"{chave}: {valor}\n")
+                uteis.exibir_produto(produto)
         else:
             print("NÃO HÁ PRODUTOS NA LOJA.\n")
 
@@ -44,13 +39,7 @@ class Loja:
             return False
         for produto in self.__produtos:
             if nome.lower() in produto['Nome'].lower():
-                for chave, valor in produto.items():
-                    if chave.lower() == 'produto':
-                        print(f"{chave}: {valor} |", end=" ")
-                    elif chave.lower() == 'preço':
-                        print(f"{chave}: R${valor:.2f} |", end=" ")
-                    elif chave.lower() == 'estoque':
-                        print(f"{chave}: {valor}\n")
+                uteis.exibir_produto(produto)
 
     def excluir(self, nome):
         nome = self.validar_nome(nome)
