@@ -20,15 +20,16 @@ class Loja:
             self.__produtos = []
 
     def adicionar(self, nome, preco, estoque):
-        nome = self.validar_nome(nome)
+        nome = ValidarProduto.validar_nome(nome)
         if ValidarProduto.verificar_existencia_produto(nome, self.produtos):
             return False
-        preco = self.validar_preco(preco)
-        estoque = self.validar_estoque(estoque)
+        preco = ValidarProduto.validar_preco(preco)
+        estoque = ValidarProduto.validar_estoque(estoque)
         novo_produto = {'Produto': nome, 'Preço': round(preco, 2), 'Estoque': estoque}
         self.__produtos.append(novo_produto)
-        gerenciar_arquivos.AbrirArquivos.arquivo_w(novo_produto)
+        gerenciar_arquivos.AbrirArquivos.arquivo_w(self.__produtos)
         self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
+        return True
     
     def listar_produtos(self):
         try:
