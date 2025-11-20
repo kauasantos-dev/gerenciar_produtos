@@ -8,6 +8,6 @@ class AbrirArquivos:
             return json.load(file)
         
     @staticmethod
-    def arquivo_w(lista):
+    def arquivo_w(produtos):
         with open(caminho_arquivos.save_to, "w", encoding="utf-8") as file:
-            json.dump(lista, file, indent=2, ensure_ascii=False)
+            json.dump(produtos, file, indent=2, ensure_ascii=False)
