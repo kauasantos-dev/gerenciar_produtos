@@ -34,7 +34,7 @@ class Loja:
         else:
             return False
 
-    def buscar(self, nome):
+    def buscar_produto(self, nome):
         if not ValidarProduto.verificar_existencia_produto(nome, self.__produtos):
             return False
         print("PRODUTOS ENCONTRADOS:\n")
