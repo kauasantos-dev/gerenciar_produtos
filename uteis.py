@@ -13,3 +13,7 @@ def atualizar_atributo(lista_produtos):
     gerenciar_arquivos.AbrirArquivos.arquivo_w(lista_produtos)
     lista_produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
     return lista_produtos
+
+def menu_opcoes():
+    print("\nSelecione uma opção abaixo (digite o número da opção):\n")
+    print("[1]- Ver produtos cadastrados\n[2]- Adicionar novo produto\n[3]- Buscar produto\n[4]- Excluir produto\n[5]- Atualizar preço\n[6]- Atualizar estoque\n[7]- Sair\n")
