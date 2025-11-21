@@ -22,49 +22,49 @@ class Loja:
         estoque = ValidarProduto.validar_estoque(estoque)
         novo_produto = {'Produto': nome, 'Preço': round(preco, 2), 'Estoque': estoque}
         self.__produtos.append(novo_produto)
-        gerenciar_arquivos.AbrirArquivos.arquivo_w(self.__produtos)
+        gerenciar_arquivos.AbrirArquivos.arquivo_w(self.produtos)
         self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
         return True
     
     def listar_produtos(self):
-        if self.__produtos:
+        if self.produtos:
             print("PRODUTOS DA LOJA:\n")
-            for produto in self.__produtos:
+            for produto in self.produtos:
                 uteis.exibir_produto(produto)
         else:
             return False
 
     def buscar_produto(self, nome):
-        if not ValidarProduto.verificar_existencia_produto(nome, self.__produtos):
+        if not ValidarProduto.verificar_existencia_produto(nome, self.produtos):
             return False
         print("PRODUTOS ENCONTRADOS:\n")
-        for produto in self.__produtos:
+        for produto in self.produtos:
             if nome.lower() in produto['Nome'].lower():
                 uteis.exibir_produto(produto)
 
     def excluir(self, nome):
         produto_encontrado = None
-        if not self.__produtos:
+        if not self.produtos:
             return False
         else:
-            for produto_salvo in self.__produtos:
+            for produto_salvo in self.produtos:
                 if nome.lower() == produto_salvo['Nome'].lower():
                     produto_encontrado = produto_salvo
                     break
             if produto_encontrado:
                 self.__produtos.remove(produto_encontrado)
-                gerenciar_arquivos.AbrirArquivos.arquivo_w(self.__produtos)
+                gerenciar_arquivos.AbrirArquivos.arquivo_w(self.produtos)
                 self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
                 return True
             else:
                 return None
 
     def atualizar_preco_estoque(self, nome_produto, preco_ou_estoque, opcao_selecionada, validador):
-        if not self.__produtos or not ValidarProduto.verificar_existencia_produto(nome_produto, self.__produtos):
+        if not self.__produtos or not ValidarProduto.verificar_existencia_produto(nome_produto, self.produtos):
             return False
         try:
             preco_ou_estoque = validador(preco_ou_estoque)
-            produto_encontrado = ValidarProduto.verificar_existencia_produto(nome_produto, self.__produtos)
+            produto_encontrado = ValidarProduto.verificar_existencia_produto(nome_produto, self.produtos)
             if opcao_selecionada == '5':
                 produto_encontrado['Preço'] = preco_ou_estoque
 
@@ -72,11 +72,11 @@ class Loja:
                 produto_encontrado['Estoque'] = preco_ou_estoque
             
             for i in range(len(self.__produtos)):
-                if self.__produtos[i]['Nome'].lower() == produto_encontrado['Nome'].lower():
+                if self.produtos[i]['Nome'].lower() == produto_encontrado['Nome'].lower():
                     self.__produtos[i] = produto_encontrado
                     break
 
-            gerenciar_arquivos.AbrirArquivos.arquivo_w(self.__produtos)
+            gerenciar_arquivos.AbrirArquivos.arquivo_w(self.produtos)
             self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
             return True
         except ValueError as erro:
