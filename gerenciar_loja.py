@@ -59,7 +59,7 @@ class Loja:
             else:
                 return None
 
-    def atualizar(self, nome, numero, opcao):
+    def atualizar_preco_estoque(self, nome_produto, preco_ou_estoque, opcao_selecionada):
         nome = self.validar_nome(nome)
         if opcao == '5':
           numero = self.validar_preco(numero)
