@@ -1,7 +1,4 @@
-import json
-
 import uteis
-import caminho_arquivos
 import gerenciar_arquivos 
 from validadores import ValidarProduto
 
