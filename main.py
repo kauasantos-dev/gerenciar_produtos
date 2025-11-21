@@ -1,5 +1,6 @@
 import sys
 
+import uteis
 import gerenciar_loja
 
 if __name__ == '__main__':
@@ -7,8 +8,7 @@ if __name__ == '__main__':
   loja = gerenciar_loja.Loja()
   print("===== GERENCIAMENTO DE PRODUTOS =====\n")
   while True:
-    print("\nSelecione uma opção abaixo (digite o número da opção):\n")
-    print("[1]- Ver produtos cadastrados\n[2]- Adicionar novo produto\n[3]- Buscar produto\n[4]- Excluir produto\n[5]- Atualizar preço\n[6]- Atualizar estoque\n[7]- Sair\n")
+    uteis.menu_opcoes()
     opcao = input()
 
     if opcao == '1':
