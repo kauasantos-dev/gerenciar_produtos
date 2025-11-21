@@ -1,6 +1,7 @@
 import sys
 
 import uteis
+import validadores
 import gerenciar_loja
 
 if __name__ == '__main__':
