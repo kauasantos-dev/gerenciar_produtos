@@ -3,7 +3,7 @@ import sys
 import gerenciar_loja
 
 if __name__ == '__main__':
-  
+
   loja = gerenciar_loja.Loja()
   print("===== GERENCIAMENTO DE PRODUTOS =====\n")
   while True:
@@ -15,15 +15,12 @@ if __name__ == '__main__':
       loja.listar_produtos()
         
     elif opcao == '2':
-      while True:
-        try:
-          nome = input("Digite o nome do produto: ")
-          preco = input("Informe o preço do produto: ")
-          estoque = input("Informe o estoque do produto: ")
-          loja.adicionar(nome, preco, estoque)
-          break
-        except ValueError as e:
-          print("Erro: ", e, " Tente novamente.\n")
+      nome = input("Digite o nome do produto: ")
+      preco = input("Informe o preço do produto: ")
+      estoque = input("Informe o estoque do produto: ")
+      if loja.adicionar(nome, preco, estoque):
+        print("PRODUTO ADICIONADO COM SUCESSO!\n")
+      
 
     elif opcao == '3':
       while True:
