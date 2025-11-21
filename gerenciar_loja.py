@@ -43,24 +43,21 @@ class Loja:
                 uteis.exibir_produto(produto)
 
     def excluir(self, nome):
-        nome = self.validar_nome(nome)
-        try:
-            self.__lista = self.arquivo_r()
-            verificar = False
-            for i in range(len(self.__lista)):
-                if nome.lower() == self.__lista[i]['Produto'].lower():
-                    verificar = True
-                    indice = i
+        produto_encontrado = None
+        if not self.__produtos:
+            return False
+        else:
+            for produto_salvo in self.__produtos:
+                if nome.lower() == produto_salvo['Nome'].lower():
+                    produto_encontrado = produto_salvo
                     break
-            if verificar:
-                del self.__lista[indice]
+            if produto_encontrado:
+                self.__produtos.remove(produto_encontrado)
+                gerenciar_arquivos.AbrirArquivos.arquivo_w(self.__produtos)
+                self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
+                return True
             else:
-                print("\nNenhum produto encontrado.\n")
-                return
-            self.arquivo_w(self.__lista)
-            print("\nProduto excluído com sucesso!\n")
-        except FileNotFoundError:
-            print("Erro: Não há produtos cadastrados.\n")     
+                return None
 
     def atualizar(self, nome, numero, opcao):
         nome = self.validar_nome(nome)
