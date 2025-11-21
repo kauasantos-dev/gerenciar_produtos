@@ -26,13 +26,10 @@ if __name__ == '__main__':
         print("PRODUTO NÃO ENCONTRADO.\n")
 
     elif opcao == '4':
-      while True:
-        try:
-          nome = input("Informe o nome do produto: ")
-          loja.excluir(nome)
-          break
-        except ValueError as e:
-          print("Erro: ", e, " Tente novamente.\n")
+      if loja.excluir(input("Informe o nome do produto: ")):
+        print("PRODUTO REMOVIDO COM SUCESSO!\n")
+      else:
+        print("PRODUTO NÃO ENCONTRADO.\n")
 
     elif opcao == '5':
       while True:
