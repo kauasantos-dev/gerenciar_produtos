@@ -19,8 +19,7 @@ class Loja:
         estoque = ValidarProduto.validar_estoque(estoque)
         novo_produto = {'Nome': nome, 'Preço': round(preco, 2), 'Estoque': estoque}
         self.__produtos.append(novo_produto)
-        gerenciar_arquivos.AbrirArquivos.arquivo_w(self.produtos)
-        self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
+        self.__produtos = uteis.atualizar_atributo(self.__produtos)
         return True
     
     def listar_produtos(self):
@@ -43,8 +42,7 @@ class Loja:
         produto_encontrado = ValidarProduto.verificar_existencia_produto(nome, self.produtos)
         if produto_encontrado:
             self.__produtos.remove(produto_encontrado)
-            gerenciar_arquivos.AbrirArquivos.arquivo_w(self.produtos)
-            self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
+            self.__produtos = uteis.atualizar_atributo(self.__produtos)
             return True
         else:
             return False
@@ -65,9 +63,7 @@ class Loja:
                 if self.produtos[i]['Nome'].lower() == produto_encontrado['Nome'].lower():
                     self.__produtos[i] = produto_encontrado
                     break
-
-            gerenciar_arquivos.AbrirArquivos.arquivo_w(self.produtos)
-            self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
+            self.__produtos = uteis.atualizar_atributo(self.__produtos)
             return True
         except ValueError as erro:
             print(f"ERRO: {erro}.\n")
