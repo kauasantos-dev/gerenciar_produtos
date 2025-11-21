@@ -13,7 +13,8 @@ if __name__ == '__main__':
     opcao = input()
 
     if opcao == '1':
-      loja.listar_produtos()
+      if not loja.listar_produtos():
+        print("NÃO HÁ PRODUTOS CADASTRADOS.\n")
         
     elif opcao == '2':
       nome = input("Digite o nome do produto: ")
@@ -50,7 +51,7 @@ if __name__ == '__main__':
           print("PRODUTO NÃO ENCONTRADO.\n")
 
     elif opcao == '7':
-      print("\nEncerrando programa...\n")
+      print("\nEncerrando programa...")
       print("PROGRAMA ENCERRADO.")
       sys.exit(0)
 
