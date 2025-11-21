@@ -32,26 +32,22 @@ if __name__ == '__main__':
       else:
         print("PRODUTO NÃO ENCONTRADO.\n")
 
-    elif opcao == '5':
-      while True:
-        try:
-          nome = input("Informe o nome do produto: ")
-          preco = input("Informe o novo preço do produto: ")
-          loja.atualizar(nome, preco, opcao)
-          break
-        except ValueError as e:
-          print("Erro: ", e, " Tente novamente.\n")
+    elif opcao == '5' or opcao == '6':
+      nome = input("Informe o nome do produto: ")
 
+      if opcao == '5':
+        preco = input("Informe o novo preço do produto: ")
+        if loja.atualizar_preco_estoque(nome, preco, '5', validadores.ValidarProduto.validar_preco):
+          print("PREÇO ATUALIZADO COM SUCESSO!\n")
+        else:
+          print("PRODUTO NÃO ENCONTRADO.\n")
 
-    elif opcao == '6':
-      while True:
-        try:
-          nome = input("Digite o nome do produto: ")
-          estoque = input("Informe o novo estoque do produto: ")
-          loja.atualizar(nome, estoque, opcao)
-          break
-        except ValueError as e:
-          print("Erro: ", e, " Tente novamente.\n")
+      elif opcao == '6':
+        estoque = input("Informe o novo estoque do produto: ")
+        if loja.atualizar_preco_estoque(nome, estoque, '6', validadores.ValidarProduto.validar_estoque):
+          print("ESTOQUE ATUALIZADO COM SUCESSO!\n")
+        else:
+          print("PRODUTO NÃO ENCONTRADO.\n")
 
     elif opcao == '7':
       print("\nPrograma encerrado.")
