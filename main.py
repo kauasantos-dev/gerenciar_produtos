@@ -1,9 +1,8 @@
 import sys
 
-import caminho_arquivos
 import gerenciar_loja
 
-produtos = gerenciar_loja.Loja()
+loja = gerenciar_loja.Loja()
 print("===== GERENCIAMENTO DE PRODUTOS =====\n")
 while True:
     print("\nSelecione uma opção abaixo (digite o número da opção):\n")
@@ -11,7 +10,7 @@ while True:
     opcao = input()
 
     if opcao == '1':
-        produtos.listar_produtos()
+        loja.listar_produtos()
         
     elif opcao == '2':
         while True:
@@ -19,7 +18,7 @@ while True:
             nome = input("Digite o nome do produto: ")
             preco = input("Informe o preço do produto: ")
             estoque = input("Informe o estoque do produto: ")
-            produtos.adicionar(nome, preco, estoque)
+            loja.adicionar(nome, preco, estoque)
             break
           except ValueError as e:
             print("Erro: ", e, " Tente novamente.\n")
@@ -28,7 +27,7 @@ while True:
         while True:
           try:
             nome = input("Digite o nome do produto: ")
-            produtos.buscar(nome)
+            loja.buscar(nome)
             break
           except ValueError as e:
               print("Erro: ", e, " Tente novamente.\n")
@@ -37,7 +36,7 @@ while True:
         while True:
           try:
               nome = input("Informe o nome do produto: ")
-              produtos.excluir(nome)
+              loja.excluir(nome)
               break
           except ValueError as e:
               print("Erro: ", e, " Tente novamente.\n")
@@ -47,7 +46,7 @@ while True:
           try:
             nome = input("Informe o nome do produto: ")
             preco = input("Informe o novo preço do produto: ")
-            produtos.atualizar(nome, preco, opcao)
+            loja.atualizar(nome, preco, opcao)
             break
           except ValueError as e:
               print("Erro: ", e, " Tente novamente.\n")
@@ -58,7 +57,7 @@ while True:
            try:
               nome = input("Digite o nome do produto: ")
               estoque = input("Informe o novo estoque do produto: ")
-              produtos.atualizar(nome, estoque, opcao)
+              loja.atualizar(nome, estoque, opcao)
               break
            except ValueError as e:
                print("Erro: ", e, " Tente novamente.\n")
