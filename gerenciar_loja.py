@@ -12,15 +12,19 @@ class Loja:
         return self.__produtos
     
     def adicionar(self, nome, preco, estoque):
-        nome = ValidarProduto.validar_nome(nome)
-        if ValidarProduto.verificar_existencia_produto(nome, self.produtos):
-            return False
-        preco = ValidarProduto.validar_preco(preco)
-        estoque = ValidarProduto.validar_estoque(estoque)
-        novo_produto = {'Nome': nome, 'Preço': round(preco, 2), 'Estoque': estoque}
-        self.__produtos.append(novo_produto)
-        self.__produtos = uteis.atualizar_atributo(self.__produtos)
-        return True
+        try:
+            nome = ValidarProduto.validar_nome(nome)
+            if ValidarProduto.verificar_existencia_produto(nome, self.produtos):
+                return False
+            preco = ValidarProduto.validar_preco(preco)
+            estoque = ValidarProduto.validar_estoque(estoque)
+            novo_produto = {'Nome': nome, 'Preço': round(preco, 2), 'Estoque': estoque}
+            self.__produtos.append(novo_produto)
+            self.__produtos = uteis.atualizar_atributo(self.__produtos)
+            return True
+        except ValueError as erro:
+            print(f"ERRO: {erro}.\n")
+            return
     
     def listar_produtos(self):
         if self.produtos:
