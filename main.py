@@ -21,15 +21,9 @@ if __name__ == '__main__':
       if loja.adicionar(nome, preco, estoque):
         print("PRODUTO ADICIONADO COM SUCESSO!\n")
       
-
     elif opcao == '3':
-      while True:
-        try:
-          nome = input("Digite o nome do produto: ")
-          loja.buscar(nome)
-          break
-        except ValueError as e:
-          print("Erro: ", e, " Tente novamente.\n")
+      if not loja.buscar_produto(input("Digite o nome do produto: ")):
+        print("PRODUTO NÃO ENCONTRADO.\n")
 
     elif opcao == '4':
       while True:
