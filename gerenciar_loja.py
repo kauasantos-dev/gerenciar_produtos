@@ -24,7 +24,7 @@ class Loja:
             return True
         except ValueError as erro:
             print(f"ERRO: {erro}.\n")
-            return
+            return False
     
     def listar_produtos(self):
         if self.produtos:
