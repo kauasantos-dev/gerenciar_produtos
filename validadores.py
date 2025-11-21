@@ -27,6 +27,8 @@ class ValidarProduto:
     
     @staticmethod
     def verificar_existencia_produto(nome_produto, lista_produtos):
+        if not lista_produtos:
+            return False
         for produto in lista_produtos:
             if produto['Nome'].lower() == nome_produto.lower():
                 return produto
