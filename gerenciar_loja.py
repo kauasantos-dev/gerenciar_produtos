@@ -52,7 +52,7 @@ class Loja:
             return False
 
     def atualizar_preco_estoque(self, nome_produto, preco_ou_estoque, opcao_selecionada, validador):
-        if not self.__produtos or not ValidarProduto.verificar_existencia_produto(nome_produto, self.produtos):
+        if not ValidarProduto.verificar_existencia_produto(nome_produto, self.produtos):
             return False
         try:
             preco_ou_estoque = validador(preco_ou_estoque)
