@@ -50,8 +50,9 @@ if __name__ == '__main__':
           print("PRODUTO NÃO ENCONTRADO.\n")
 
     elif opcao == '7':
-      print("\nPrograma encerrado.")
+      print("\nEncerrando programa...\n")
+      print("PROGRAMA ENCERRADO.")
       sys.exit(0)
 
     else:
-      print("\nOpção inválida. Por favor, digite uma opção válida.\n")
+      print("OPÇÃO INVÁLIDA. POR FAVOR, DIGITE UMA OPÇÃO DISPONÍVEL.\n")
