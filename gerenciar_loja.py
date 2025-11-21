@@ -43,21 +43,14 @@ class Loja:
                 uteis.exibir_produto(produto)
 
     def excluir(self, nome):
-        produto_encontrado = None
-        if not self.produtos:
-            return False
+        produto_encontrado = ValidarProduto.verificar_existencia_produto(nome, self.produtos)
+        if produto_encontrado:
+            self.__produtos.remove(produto_encontrado)
+            gerenciar_arquivos.AbrirArquivos.arquivo_w(self.produtos)
+            self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
+            return True
         else:
-            for produto_salvo in self.produtos:
-                if nome.lower() == produto_salvo['Nome'].lower():
-                    produto_encontrado = produto_salvo
-                    break
-            if produto_encontrado:
-                self.__produtos.remove(produto_encontrado)
-                gerenciar_arquivos.AbrirArquivos.arquivo_w(self.produtos)
-                self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
-                return True
-            else:
-                return None
+            return False
 
     def atualizar_preco_estoque(self, nome_produto, preco_ou_estoque, opcao_selecionada, validador):
         if not self.__produtos or not ValidarProduto.verificar_existencia_produto(nome_produto, self.produtos):
