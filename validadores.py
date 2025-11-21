@@ -29,5 +29,5 @@ class ValidarProduto:
     def verificar_existencia_produto(nome_produto, lista_produtos):
         for produto in lista_produtos:
             if produto['Nome'].lower() == nome_produto.lower():
-                return True
+                return produto
         return False
