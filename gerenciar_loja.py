@@ -59,29 +59,25 @@ class Loja:
             else:
                 return None
 
-    def atualizar_preco_estoque(self, nome_produto, preco_ou_estoque, opcao_selecionada):
-        nome = self.validar_nome(nome)
-        if opcao == '5':
-          numero = self.validar_preco(numero)
-        elif opcao == '6':
-            numero = self.validar_estoque(numero)
+    def atualizar_preco_estoque(self, nome_produto, preco_ou_estoque, opcao_selecionada, validador):
+        if not self.__produtos or not ValidarProduto.verificar_existencia_produto(nome_produto, self.__produtos):
+            return False
         try:
-              self.__lista = self.arquivo_r()
-              verificar = False
-              for i in range(len(self.__lista)):
-                  if nome.lower() == self.__lista[i]['Produto'].lower():
-                     verificar = True
-                  if opcao == '5' and verificar:
-                         self.__lista[i]['Preço'] = round(numero, 2)
-                         print("\nPreço atualizado com sucesso!\n")
-                         break
-                  elif opcao == '6' and verificar:
-                         self.__lista[i]['Estoque'] = numero
-                         print("Estoque atualizado com sucesso!\n")
-                         break
-              if not verificar:
-                  print("\nNenhum produto encontrado.\n")
-                  return
-              self.arquivo_w(self.__lista)
-        except FileNotFoundError:
-            print("Erro: Não há produtos cadastrados.\n")
+            preco_ou_estoque = validador(preco_ou_estoque)
+            produto_encontrado = ValidarProduto.verificar_existencia_produto(nome_produto, self.__produtos)
+            if opcao_selecionada == '5':
+                produto_encontrado['Preço'] = preco_ou_estoque
+
+            elif opcao_selecionada == '6':
+                produto_encontrado['Estoque'] = preco_ou_estoque
+            
+            for i in range(len(self.__produtos)):
+                if self.__produtos[i]['Nome'].lower() == produto_encontrado['Nome'].lower():
+                    self.__produtos[i] = produto_encontrado
+                    break
+
+            gerenciar_arquivos.AbrirArquivos.arquivo_w(self.__produtos)
+            self.__produtos = gerenciar_arquivos.AbrirArquivos.arquivo_r()
+            return True
+        except ValueError as erro:
+            print(f"ERRO: {erro}.\n")
