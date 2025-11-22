@@ -38,16 +38,18 @@ if __name__ == '__main__':
 
       if opcao == '5':
         preco = input("Informe o novo preço do produto: ")
-        if loja.atualizar_preco_estoque(nome, preco, '5', validadores.ValidarProduto.validar_preco):
+        verificar_atualizacao = loja.atualizar_preco_estoque(nome, preco, '5', validadores.ValidarProduto.validar_preco)
+        if verificar_atualizacao:
           print("PREÇO ATUALIZADO COM SUCESSO!\n")
-        else:
+        elif verificar_atualizacao is False:
           print("PRODUTO NÃO ENCONTRADO.\n")
 
       elif opcao == '6':
         estoque = input("Informe o novo estoque do produto: ")
-        if loja.atualizar_preco_estoque(nome, estoque, '6', validadores.ValidarProduto.validar_estoque):
+        verificar_atualizacao = loja.atualizar_preco_estoque(nome, estoque, '6', validadores.ValidarProduto.validar_estoque)
+        if verificar_atualizacao:
           print("ESTOQUE ATUALIZADO COM SUCESSO!\n")
-        else:
+        elif verificar_atualizacao is False:
           print("PRODUTO NÃO ENCONTRADO.\n")
 
     elif opcao == '7':
