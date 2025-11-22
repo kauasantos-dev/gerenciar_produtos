@@ -23,7 +23,7 @@ class Loja:
             self.__produtos = uteis.atualizar_atributo(self.__produtos)
             return True
         except ValueError as erro:
-            print(f"ERRO: {erro}.\n")
+            print(f"ERRO: {erro}\n")
             return False
     
     def listar_produtos(self):
@@ -72,4 +72,5 @@ class Loja:
             self.__produtos = uteis.atualizar_atributo(self.__produtos)
             return True
         except ValueError as erro:
-            print(f"ERRO: {erro}.\n")
+            print(f"ERRO: {erro}\n")
+            return None
