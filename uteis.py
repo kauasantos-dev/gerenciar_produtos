@@ -2,7 +2,7 @@ import gerenciar_arquivos
 
 def exibir_produto(produto):
     for chave, valor in produto.items():
-        if chave.lower() == 'produto':
+        if chave.lower() == 'nome':
             print(f"{chave}: {valor} |", end=" ")
         elif chave.lower() == 'preço':
             print(f"{chave}: R${valor:.2f} |", end=" ")
