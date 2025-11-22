@@ -36,13 +36,13 @@ class Loja:
             return False
 
     def buscar_produto(self, nome):
-        if not ValidarProduto.verificar_existencia_produto(nome, self.produtos):
-            return False
-        print("PRODUTOS ENCONTRADOS:\n")
-        for produto in self.produtos:
-            if nome.lower() in produto['Nome'].lower():
-                uteis.exibir_produto(produto)
+        produto_encontrado = ValidarProduto.verificar_existencia_produto(nome, self.produtos)
+        if produto_encontrado:
+            print("PRODUTO ENCONTRADO:\n")
+            uteis.exibir_produto(produto_encontrado)
             return True
+        else:
+            return False
 
     def excluir(self, nome):
         produto_encontrado = ValidarProduto.verificar_existencia_produto(nome, self.produtos)
