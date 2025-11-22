@@ -31,6 +31,7 @@ class Loja:
             print("PRODUTOS DA LOJA:\n")
             for produto in self.produtos:
                 uteis.exibir_produto(produto)
+            return True
         else:
             return False
 
@@ -41,6 +42,7 @@ class Loja:
         for produto in self.produtos:
             if nome.lower() in produto['Nome'].lower():
                 uteis.exibir_produto(produto)
+            return True
 
     def excluir(self, nome):
         produto_encontrado = ValidarProduto.verificar_existencia_produto(nome, self.produtos)
