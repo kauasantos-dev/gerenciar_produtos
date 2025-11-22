@@ -1,8 +1,8 @@
 import sys
 
-import uteis
-import validadores
-import gerenciar_loja
+from auxiliares import uteis
+from auxiliares import validadores
+from configloja import gerenciar_loja
 
 if __name__ == '__main__':
 
