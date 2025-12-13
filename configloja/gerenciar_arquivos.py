@@ -8,7 +8,7 @@ class AbrirArquivos:
         try:
             with open(caminho_arquivos.save_to, "r", encoding="utf-8") as file:
                 return json.load(file)
-        except FileNotFoundError:
+        except (FileNotFoundError, json.JSONDecodeError):
             return False
         
     @staticmethod
