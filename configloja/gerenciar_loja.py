@@ -15,6 +15,7 @@ class Loja:
         try:
             nome = ValidarProduto.validar_nome(nome)
             if ValidarProduto.verificar_existencia_produto(nome, self.produtos):
+                print("ERRO: Já existe um produto com esse nome.\n")
                 return False
             preco = ValidarProduto.validar_preco(preco)
             estoque = ValidarProduto.validar_estoque(estoque)
