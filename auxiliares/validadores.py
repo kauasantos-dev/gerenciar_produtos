@@ -1,3 +1,5 @@
+import re
+
 class ValidarProduto:
     @staticmethod
     def validar_nome(nome):
@@ -7,14 +9,17 @@ class ValidarProduto:
     
     @staticmethod
     def validar_preco(preco):
-        try:
-            preco = float(preco)
-        except ValueError:
-            raise ValueError("O preço do produto deve conter apenas números.")
-        if preco <= 0:
-            raise ValueError("O preço do produto não pode ser menor ou igual a 0 (zero).")
-        return preco
-    
+        estrutura_preco = r'^(?:R\$)?\s*([0-9]+)(\.[0-9]{3})*(\,[0-9]+)?$'
+        if re.match(estrutura_preco, preco):
+            return float(
+                preco
+                .replace(".", "")
+                .replace(",", ".")
+                .replace("R$", "")
+                .replace(" ", "")
+            )
+        raise ValueError("Preço inválido. Por favor, informe um valor válido. (EX: R$20, R$ 20.00, 20...).\n")
+
     @staticmethod
     def validar_estoque(estoque):
         try:
