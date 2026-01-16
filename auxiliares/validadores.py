@@ -9,15 +9,17 @@ class ValidarProduto:
     
     @staticmethod
     def validar_preco(preco):
-        estrutura_preco = r'^(?:R\$)?\s*([0-9]+)(\.[0-9]{3})*(\,[0-9]+)?$'
-        if re.match(estrutura_preco, preco):
-            return float(
+        estrutura_preco  = r'^(R\$)?\s*([0-9]+)(\.[0-9]{3})*(\,[0-9]+)?$'
+        if re.fullmatch(estrutura_preco, preco):
+            preco_ajustado = (
                 preco
+                .replace(" ", "")
                 .replace(".", "")
                 .replace(",", ".")
                 .replace("R$", "")
-                .replace(" ", "")
             )
+            preco_ajustado = round(float(preco_ajustado), 2)
+            return preco_ajustado
         raise ValueError("Preço inválido. Por favor, informe um valor válido. (EX: R$20, R$ 20.00, 20...).\n")
 
     @staticmethod
