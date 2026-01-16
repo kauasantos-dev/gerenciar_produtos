@@ -80,7 +80,7 @@ Este projeto está **containerizado com Docker** e possui uma **imagem publicada
 
 ### 📦 Imagem disponível no Docker Hub:
 ```bash
-kauasantoss/gerenciar-produtos:latest
+kauasantoss/gerenciar-produtos:2.0
 ```
 
 ### ▶️ Executar a imagem
@@ -95,7 +95,7 @@ A aplicação é executada dentro da pasta `/app` no container e o arquivo de pr
 ### ▶️ Executar com volume (recomendado)
 
 ```bash
-docker run -it -v ./produtos:/app/produtos kauasantoss/gerenciar-produtos:latest
+docker run -it -v ./produtos:/app/produtos kauasantoss/gerenciar-produtos:2.0
 ```
 
 **📌 Dessa forma:**
@@ -109,7 +109,7 @@ docker run -it -v ./produtos:/app/produtos kauasantoss/gerenciar-produtos:latest
 ### ▶️ Executar sem volume (não recomendado)
 
 ```bash
-docker run -it kauasantoss/gerenciar-produtos:latest
+docker run -it kauasantoss/gerenciar-produtos:2.0
 ```
 
 **⚠️ Nesse caso, os dados serão perdidos ao remover o container.**
@@ -142,7 +142,7 @@ O `docker start` serve para executar o mesmo container criado inicialmente usand
 
 ```bash
 docker build -t gerenciar-produtos .
-docker run -it -v ./produtos:/app/produtos gerenciar-produtos:latest
+docker run -it -v ./produtos:/app/produtos gerenciar-produtos:latest`
 ```
 
 ---
